@@ -1,0 +1,1 @@
+web: gunicorn does_it_vegan.wsgi
