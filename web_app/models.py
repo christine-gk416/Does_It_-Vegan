@@ -22,7 +22,7 @@ class Restaurants(models.Model):
 
     class Meta:
         """
-        will order class based on crrated on date.
+        will order class based on created on date.
         inspired by code institue blog walk through project
         """
         ordering = ['-created_on']
@@ -64,3 +64,35 @@ class Review(models.Model):
         django docs recamends to define this method
         """
         return f"Comment {self.body} by {self.title}"
+
+
+class Dish(models.Model):
+    """
+    model for dished each restaurant
+    """
+    class DishType(models.TextChoices):
+        """
+        preselected choices for type of dish
+        """
+        MAIN = 'Main'
+        SIDE = 'Side'
+        STARTER = 'Starter'
+        DESSERT = 'Dessert'
+        OTHER = 'Other'
+
+    name = models.CharField(max_length=100, unique=True)
+    image = CloudinaryField('image', default='placeholder_dish')
+    price = models.FloatField()
+    description = models.TextField()
+    created_on = models.DateTimeField(auto_now_add=True)
+    type = models.CharField(
+        max_length=100, unique=True,
+        choices=DishType.choices,
+        default=DishType.MAIN,
+        )
+
+    def __str__(self):
+        """
+        django docs recamends to define this method
+        """
+        return self.name
