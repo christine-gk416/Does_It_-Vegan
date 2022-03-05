@@ -5,7 +5,7 @@ from cloudinary.models import CloudinaryField
 STATUS = ((0, "Draft"), (1, "Authorised"))
 
 
-class Restaurants(models.Model):
+class Restaurant(models.Model):
     """
     model for restaurant data
     """
@@ -47,7 +47,7 @@ class Review(models.Model):
     """
     title = models.CharField(max_length=200, unique=True)
     restaurant = models.ForeignKey(
-        Restaurants, on_delete=models.CASCADE, related_name='reviews')
+        Restaurant, on_delete=models.CASCADE, related_name='reviews')
     created_on = models.DateTimeField(auto_now_add=True)
     body = models.TextField()
     approved = models.BooleanField(default=False)
