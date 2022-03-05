@@ -25,7 +25,7 @@ class Restaurants(models.Model):
         will order class based on created on date.
         inspired by code institue blog walk through project
         """
-        ordering = ['-created_on']
+        ordering = ['-updated_on']
 
     def __str__(self):
         """
@@ -57,7 +57,7 @@ class Review(models.Model):
         will order class based on crrated on date.
         inspired by code institue blog walk through project
         """
-        ordering = ["created_on"]
+        ordering = ['-created_on']
 
     def __str__(self):
         """
