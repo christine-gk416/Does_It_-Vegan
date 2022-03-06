@@ -1,1 +1,1 @@
-web: gunicorn does_it_vegan.wsgi:application
+web: gunicorn does_it_vegan.wsgi
