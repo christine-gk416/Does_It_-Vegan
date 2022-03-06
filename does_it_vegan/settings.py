@@ -34,10 +34,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = development
 
-if development:
-    ALLOWED_HOSTS = ['localhost']
-else:
-    ALLOWED_HOSTS = [os.environ.get('does-it-vegan.herokuapp.com')]
+ALLOWED_HOSTS = ['does-it-vegan.herokuapp.com', 'localhost']
 
 
 # Application definition
@@ -94,7 +91,7 @@ if development:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+            'NAME': BASE_DIR / 'db.sqlite3',
         }
     }
 else:
