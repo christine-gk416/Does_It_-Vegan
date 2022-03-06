@@ -37,7 +37,7 @@ DEBUG = development
 if development:
     ALLOWED_HOSTS = ['localhost']
 else:
-    ALLOWED_HOSTS = ['https://does-it-vegan.herokuapp.com/']
+    ALLOWED_HOSTS = ['does-it-vegan.herokuapp.com']
 
 
 # Application definition
