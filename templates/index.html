@@ -4,5 +4,9 @@
 <h1>Restaurants</h1>
     {% for restaurant in restaurant_list %}
         <h2>{{restaurant.name}}</h2>
+        <p>{{restaurant.description}}</p>
+        <p>town/city: {{restaurant.townCity}}</p>
+
+<h2>reviews</h2>
     {% endfor %}
 {%endblock%}
