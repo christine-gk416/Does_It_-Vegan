@@ -20,7 +20,7 @@ class Restaurant(models.Model):
         User, related_name='restaurant_likes', blank=True)
     image = CloudinaryField('image', default='placeholder')
     adress = models.TextField(null=True)
-    townCity = models.CharField(max_length=100, unique=True, null=True)
+    townCity = models.CharField(max_length=100, unique=False, null=True)
 
     class Meta:
         """

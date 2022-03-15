@@ -1,6 +1,10 @@
 tech
 - summernote 
 
+images-
+usplash
+https://unsplash.com/photos/GXXYkSwndP4 
+
 acknolege emnts
 dave and dasiy mentor - deployment
 
