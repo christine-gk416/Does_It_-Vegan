@@ -87,6 +87,10 @@ class Dish(models.Model):
     price = models.FloatField()
     description = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
+    restaurant = models.ForeignKey(
+        Restaurant, on_delete=models.CASCADE,
+        related_name='dish', null=True
+        )
     type = models.CharField(
         max_length=100, unique=True,
         choices=DishType.choices,
