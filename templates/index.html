@@ -4,8 +4,17 @@
 <h1>Restaurants</h1>
     {% for restaurant in restaurant_list %}
         <h2>{{restaurant.name}}</h2>
-        <p>{{restaurant.description}}</p>
+        {{restaurant.id}}
+        <p>description: {{restaurant.description}} </p>
         <p>town/city: {{restaurant.townCity}}</p>
+        <h3>dishes</h3>
+        {% for item in dish  %}
+            {{item.restaurant}}
+            {% if item.restaurant.id == restaurant.id %}
+                {{item.name}}
+                £: {{item.price}}
+            {% endif %}
+        {% endfor %}
 
 <h2>reviews</h2>
     {% endfor %}
