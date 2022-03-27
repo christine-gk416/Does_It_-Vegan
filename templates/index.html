@@ -1,21 +1,21 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Restaurants</h1>
-    {% for restaurant in restaurant_list %}
-        <h2>{{restaurant.name}}</h2>
-        {{restaurant.id}}
-        <p>description: {{restaurant.description}} </p>
-        <p>town/city: {{restaurant.townCity}}</p>
-        <h3>dishes</h3>
-        {% for item in dish  %}
-            {{item.restaurant}}
-            {% if item.restaurant.id == restaurant.id %}
-                {{item.name}}
-                £: {{item.price}}
-            {% endif %}
-        {% endfor %}
+<div class="container">
+    <div class="row">
+        <h1>Restaurants</h1>
+            {% for restaurant in restaurant_list %}
+                <div class="col">
+                    <div class="card">
+                        <h2>{{restaurant.name}}</h2>
+                        {{restaurant.id}}
+                        <p>description: {{restaurant.description}} </p>
+                        <p>town/city: {{restaurant.townCity}}</p>
+                        <button type="button" class="btn btn-primary">view</button>
+                    </div>
 
-<h2>reviews</h2>
-    {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
 {%endblock%}
