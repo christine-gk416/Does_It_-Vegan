@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<ul>
+    {% for restaurant in restaurant_list %}
+      <li>
+        {{ restaurant.name }}
+      </li>
+    {% endfor %}
+</ul>
+
+{%endblock%}

@@ -17,3 +17,7 @@ class RestaurantList(generic.ListView):
         # Add in the publisher
         context['dish'] = Dish.objects.all()
         return context
+
+class SearchResultsView(generic.ListView):
+    model = Restaurant
+    template_name = 'search_results.html'
