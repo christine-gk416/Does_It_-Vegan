@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views import generic, View
 from .models import Restaurant, Dish
+from django.db.models import Q
 
 class RestaurantList(generic.ListView):
     """
@@ -17,7 +18,15 @@ class RestaurantList(generic.ListView):
         # Add in the publisher
         context['dish'] = Dish.objects.all()
         return context
+        
 
 class SearchResultsView(generic.ListView):
     model = Restaurant
     template_name = 'search_results.html'
+
+    def get_queryset(self):  # new
+        query = self.request.GET.get("q")
+        object_list = Restaurant.objects.filter(
+            Q(townCity__icontains=query)
+        )
+        return object_list
