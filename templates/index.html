@@ -8,18 +8,7 @@
         <form action="{% url 'search_results' %}" method="get">
             <input name="q" type="text" placeholder="Search...">
         </form>
-            {% for restaurant in restaurant_list %}
-                <div class="col">
-                    <div class="card">
-                        <h2>{{restaurant.name}}</h2>
-                        {{restaurant.id}}
-                        <p>description: {{restaurant.description}} </p>
-                        <p>town/city: {{restaurant.townCity}}</p>
-                        <button type="button" class="btn btn-primary">view</button>
-                    </div>
-
-                </div>
-            {% endfor %}
+      
         </div>
     </div>
 {%endblock%}
