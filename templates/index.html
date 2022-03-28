@@ -4,6 +4,10 @@
 <div class="container">
     <div class="row">
         <h1>Restaurants</h1>
+<!-- search bar will load seach page with search results -->
+        <form action="{% url 'search_results' %}" method="get">
+            <input name="q" type="text" placeholder="Search...">
+        </form>
             {% for restaurant in restaurant_list %}
                 <div class="col">
                     <div class="card">
