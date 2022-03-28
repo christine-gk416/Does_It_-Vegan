@@ -5,17 +5,21 @@
 <div class="container">
   <div class="row">
       <h1>Restaurants</h1>
+      {% if object_list %}
           {% for restaurant in object_list %}
               <div class="col">
                   <div class="card">
                       <h2>{{restaurant.name}}</h2>
-                      <p>description: {{restaurant.description}} </p>
+                      <p>description: {{restaurant.description}}</p>
                       <p>town/city: {{restaurant.townCity}}</p>
                       <button type="button" class="btn btn-primary">view</button>
                   </div>
 
               </div>
           {% endfor %}
+      {% else %}
+              <p>there are no city that match your search on our system please try again</p>
+      {% endif %}
       </div>
   </div>
 
