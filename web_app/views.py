@@ -30,6 +30,7 @@ class SearchResultsView(generic.ListView):
     def get_queryset(self):  # new
         query = self.request.GET.get("q")
         object_list = Restaurant.objects.filter(
-            Q(townCity__icontains=query)
+            Q(townCity__iexact=query)
         )
         return object_list
+

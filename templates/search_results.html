@@ -3,10 +3,15 @@
 {% block content %}
 
 <div class="container">
-  <div class="row">
-      <h1>Restaurants</h1>
-      {% if object_list %}
-          {% for restaurant in object_list %}
+    <div class="row">
+        <h1>Restaurants</h1>
+        <!-- search bar will load seach page with search results -->
+        <form action="{% url 'search_results' %}" method="get">
+            <input name="q" type="text" placeholder="Search...">
+        </form>
+        
+        {% if object_list %}
+            {% for restaurant in object_list %}
               <div class="col">
                   <div class="card">
                       <h2>{{restaurant.name}}</h2>
@@ -16,11 +21,11 @@
                   </div>
 
               </div>
-          {% endfor %}
-      {% else %}
-              <p>there are no city that match your search on our system please try again</p>
-      {% endif %}
-      </div>
-  </div>
+            {% endfor %}
+        {% else %}
+            <p>there are no cities that match your search on our system please try again</p>
+        {% endif %}
+        </div>
+    </div>
 
 {%endblock%}
