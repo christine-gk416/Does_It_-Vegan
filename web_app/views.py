@@ -1,6 +1,9 @@
+from django.views.generic.edit import CreateView
+from django.urls import reverse_lazy
 from django.views import generic
 from django.db.models import Q
-from .models import Restaurant, Dish
+from .models import Restaurant, Dish, User
+from .forms import SignUpForm
 
 
 class RestaurantList(generic.ListView):
@@ -34,3 +37,11 @@ class SearchResultsView(generic.ListView):
         )
         return object_list
 
+
+class SignUpView(CreateView):
+    """
+    veiw for user sing up page
+    """
+    form_class = SignUpForm
+    success_url = reverse_lazy('login')
+    template_name = 'sign_up.html'
