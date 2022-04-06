@@ -57,3 +57,10 @@ class RestaurantDetailView(DetailView):
     model = Restaurant
     template_name = 'restaurant_detail.html'
 
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super().get_context_data(**kwargs)
+        # Add in the publisher
+        context['dish'] = Dish.objects.all()
+        return context
+

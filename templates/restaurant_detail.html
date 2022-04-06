@@ -7,6 +7,17 @@
         <h2>{{restaurant.name}}</h2>
         <p>description: {{restaurant.description}}</p>
         <p>town/city: {{restaurant.townCity}}</p>
+        {% for dish in dish %}
+            {% if dish.restaurant.id == restaurant.id%}
+                <div class="col">
+                    <div class="card">
+                      <h2>{{dish.name}}</h2>
+                </div>
+            {% else %}
+                <p>no dishes add for this restaurant</p>
+            {% endif %}
+        {% endfor %}
+        
         </div>
     </div>
 {% endblock %}
