@@ -1,6 +1,8 @@
+from django.shortcuts import render, get_object_or_404
 from django.views.generic.edit import CreateView
 from django.urls import reverse_lazy
-from django.views import generic
+from django.views import generic, View
+from django.views.generic import DetailView
 from django.db.models import Q
 from .models import Restaurant, Dish, User
 from .forms import SignUpForm
@@ -30,12 +32,12 @@ class SearchResultsView(generic.ListView):
     model = Restaurant
     template_name = 'search_results.html'
 
-    def get_queryset(self):  # new
+    def get_queryset(self):
         query = self.request.GET.get("q")
-        object_list = Restaurant.objects.filter(
+        restaurant_list = Restaurant.objects.filter(
             Q(townCity__iexact=query)
         )
-        return object_list
+        return restaurant_list
 
 
 class SignUpView(CreateView):
@@ -45,3 +47,13 @@ class SignUpView(CreateView):
     form_class = SignUpForm
     success_url = reverse_lazy('login')
     template_name = 'sign_up.html'
+
+
+class RestaurantDetailView(DetailView):
+    """
+    creates  view for restaurant details page
+    """
+
+    model = Restaurant
+    template_name = 'restaurant_detail.html'
+

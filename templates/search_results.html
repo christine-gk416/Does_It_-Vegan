@@ -10,14 +10,14 @@
             <input name="q" type="text" placeholder="Search...">
         </form>
         
-        {% if object_list %}
-            {% for restaurant in object_list %}
+        {% if restaurant_list %}
+            {% for restaurant in restaurant_list %}
                 <div class="col">
                     <div class="card">
                       <h2>{{restaurant.name}}</h2>
                       <p>description: {{restaurant.description}}</p>
                       <p>town/city: {{restaurant.townCity}}</p>
-                      <button type="button" class="btn btn-primary">view</button>
+                      <a href="{% url 'restaurant_detail' restaurant.pk %}"><button type="button" class="btn btn-primary">view</button></a>
                  </div>
 
                 </div>
@@ -28,4 +28,4 @@
         </div>
     </div>
 
-{%endblock%}
+{% endblock %}
