@@ -9,5 +9,6 @@ go vegan - https://unsplash.com/photos/FoVrVBxEefU
 
 acknolege emnts
 dave and dasiy mentor - deployment
+Daniel_C_5p - advise on testing
 
 note remove development in config vars bfore submitting project.

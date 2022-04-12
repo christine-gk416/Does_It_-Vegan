@@ -61,6 +61,7 @@ class TestViews(TestCase):
         """
         test if the serch_results.html page returns a 200 status code
         """
-        response = self.client.get('search/')
+        response = self.client.get('/search/')
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'search_results.html')
+        
