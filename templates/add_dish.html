@@ -4,7 +4,7 @@
 <h2>add dish for {{ restaurant.name }}</h2>
 <form method="post">
     {% csrf_token %}{{form|crispy}}
-    <a href="{% url 'restaurant_detail' restaurant.pk %}"><button type="submit" class="btn btn-primary">add dish</button></a>
+    <a href="{% url 'home' %}"><button type="submit" class="btn btn-primary">add dish</button></a>
 </form>
 
 {% endblock %}

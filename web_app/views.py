@@ -92,5 +92,5 @@ class AddDishView(CreateView):
 
         return render(
             request,
-            f"restaurant_detail/{restaurant.pk}",
+            'index.html',
         )
