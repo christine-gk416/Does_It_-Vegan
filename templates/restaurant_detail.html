@@ -15,12 +15,12 @@
                       <p>price: £{{dish.price|striptags}}</p>
                       <p>description: {{dish.description|striptags}}</p>
                 </div>
-            {% else %}
-                <p>no dishes add for this restaurant</p>
             {% endif %}
         {% endfor %}
         {% if user.is_authenticated %}
         <a href="{% url 'add_dish' restaurant.pk %}"><button type="button" class="btn btn-primary">add dish</button></a>
+        {% else %}
+        <p>login in to add a dish or review <a class="nav-link" href="{% url 'login' %}">here!</a></p>
         {%endif%}
         </div>
     </div>

@@ -69,8 +69,8 @@ class AddDishView(CreateView):
     """
     veiw for user sing up page
     """
+    model = Restaurant
     form_class = DishForm
-    success_url = reverse_lazy('home')
     template_name = 'add_dish.html'
 
     def get_context_data(self, **kwargs):
@@ -79,3 +79,18 @@ class AddDishView(CreateView):
         # Add in the publisher
         context['dish'] = Dish.objects.all()
         return context
+
+    def post(self, request, *args, **kwargs):
+
+        dish_form = DishForm(data=request.POST)
+
+        if dish_form.is_valid():
+            dish = dish_form.save(commit=False)
+            dish.save()
+        else:
+            dish_form = DishForm()
+
+        return render(
+            request,
+            f"restaurant_detail/{restaurant.pk}",
+        )

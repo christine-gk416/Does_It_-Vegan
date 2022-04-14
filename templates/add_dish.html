@@ -1,10 +1,10 @@
 {% extends "base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
-
+<h2>add dish for {{ restaurant.name }}</h2>
 <form method="post">
     {% csrf_token %}{{form|crispy}}
-    <button type="submit" class="btn btn-primary">Add Dish</button>
+    <a href="{% url 'restaurant_detail' restaurant.pk %}"><button type="submit" class="btn btn-primary">add dish</button></a>
 </form>
 
 {% endblock %}
