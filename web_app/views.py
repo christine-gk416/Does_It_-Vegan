@@ -4,8 +4,8 @@ from django.urls import reverse_lazy
 from django.views import generic, View
 from django.views.generic import DetailView
 from django.db.models import Q
-from .models import Restaurant, Dish, User
-from .forms import SignUpForm, DishForm
+from .models import Restaurant, Dish, User, Review
+from .forms import SignUpForm, DishForm, ReviewForm
 
 
 class RestaurantList(generic.ListView):
@@ -62,12 +62,13 @@ class RestaurantDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         # Add in the publisher
         context['dish'] = Dish.objects.all()
+        context['review'] = Review.objects.all()
         return context
 
 
 class AddDishView(CreateView):
     """
-    veiw for user sing up page
+    veiw for add dish page
     """
     model = Restaurant
     form_class = DishForm
@@ -89,6 +90,36 @@ class AddDishView(CreateView):
             dish.save()
         else:
             dish_form = DishForm()
+
+        return render(
+            request,
+            'index.html',
+        )
+
+class AddReviewView(CreateView):
+    """
+    veiw for add review page
+    """
+    model = Restaurant
+    form_class = ReviewForm
+    template_name = 'add_review.html'
+
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super().get_context_data(**kwargs)
+        # Add in the publisher
+        context['review'] = Review.objects.all()
+        return context
+
+    def post(self, request, *args, **kwargs):
+
+        review_form = ReviewForm(data=request.POST)
+
+        if review_form.is_valid():
+            review = review_form.save(commit=False)
+            review.save()
+        else:
+            review_form = reviewForm()
 
         return render(
             request,
