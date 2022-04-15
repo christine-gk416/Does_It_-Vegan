@@ -96,6 +96,7 @@ class AddDishView(CreateView):
             'index.html',
         )
 
+
 class AddReviewView(CreateView):
     """
     veiw for add review page

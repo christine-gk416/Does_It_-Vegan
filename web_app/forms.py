@@ -23,12 +23,12 @@ class DishForm(forms.ModelForm):
             'name', 'description', 'price', 'image', 'type', 'restaurant',
         )
 
-class DishForm(forms.ModelForm):
+class ReviewForm(forms.ModelForm):
     """
     creates a form to add a new dish for a restaurant
     """
     class Meta:
-        model = Dish
+        model = Review
         fields = (
             'title', 'body', 'posted_by', 'restaurant',
         )

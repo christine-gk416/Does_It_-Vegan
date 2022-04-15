@@ -7,6 +7,8 @@
         <h2>{{restaurant.name|striptags}}</h2>
         <p>description: {{restaurant.description|striptags}}</p>
         <p>town/city: {{restaurant.townCity|striptags}}</p>
+
+        <!-- dish section -->
         {% for dish in dish %}
             {% if dish.restaurant.id == restaurant.id%}
                 <div class="col">
@@ -23,6 +25,7 @@
         <p>login in to add a dish or review <a class="nav-link" href="{% url 'login' %}">here!</a></p>
         {%endif%}
 
+        <!-- reveiw section -->
         {% for review in review %}
         {% if review.restaurant.id == restaurant.id%}
             <div class="col">
