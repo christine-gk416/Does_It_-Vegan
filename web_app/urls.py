@@ -10,6 +10,10 @@ urlpatterns = [
         'edit_dish/<int:pk>', views.EditDishView.as_view(), name='edit_dish'
     ),
     path(
+        'delete/<int:pk>', views.DeleteDishView.as_view(),
+        name='dish_confirm_delete'
+    ),
+    path(
         'add_review/<int:pk>', views.AddReviewView.as_view(), name='add_review'
     ),
     path(

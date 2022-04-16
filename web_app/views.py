@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.views import generic, View
 from django.views.generic import DetailView
@@ -146,3 +146,11 @@ class EditReviewView(UpdateView):
     form_class = ReviewForm
     template_name = 'edit_review.html'
     success_url = "/"
+
+
+class DeleteDishView(DeleteView):
+    """
+    veiw for deleting dishes
+    """
+    model = Dish
+    success_url = reverse_lazy('home')

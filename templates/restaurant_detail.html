@@ -13,11 +13,12 @@
             {% if dish.restaurant.id == restaurant.id%}
                 <div class="col">
                     <div class="card">
-                      <h2>{{dish.name|striptags}}</h2>
-                      <p>price: £{{dish.price|striptags}}</p>
-                      <p>description: {{dish.description|striptags}}</p>
-                      <a href="{% url 'edit_dish' dish.pk %}"><button type="button" class="btn btn-primary">Edit dish</button></a>
-                </div>
+                        <h2>{{dish.name|striptags}}</h2>
+                        <p>price: £{{dish.price|striptags}}</p>
+                        <p>description: {{dish.description|striptags}}</p>
+                        <a href="{% url 'edit_dish' dish.pk %}"><button type="button" class="btn btn-primary">Edit dish</button></a>
+                        <a href="{% url 'dish_confirm_delete' dish.pk %}"><button type="button" class="btn btn-primary">Delete</button></a>
+                    </div>
             {% endif %}
         {% endfor %}
         {% if user.is_authenticated %}
@@ -31,11 +32,11 @@
         {% if review.restaurant.id == restaurant.id%}
             <div class="col">
                 <div class="card">
-                  <h2>{{review.name|striptags}}</h2>
-                  <p>reviewd by:{{review.posted_by|striptags}}</p>
-                  <p>body: {{review.body|striptags}}</p>
-                  <a href="{% url 'edit_review' review.pk %}"><button type="button" class="btn btn-primary">Edit Review</button></a>
-            </div>
+                    <h2>{{review.name|striptags}}</h2>
+                    <p>reviewd by:{{review.posted_by|striptags}}</p>
+                    <p>body: {{review.body|striptags}}</p>
+                    <a href="{% url 'edit_review' review.pk %}"><button type="button" class="btn btn-primary">Edit Review</button></a>
+                </div>
         {% endif %}
     {% endfor %}
     {% if user.is_authenticated %}
