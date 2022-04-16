@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView
 from django.urls import reverse_lazy
 from django.views import generic, View
 from django.views.generic import DetailView
@@ -128,7 +128,7 @@ class AddReviewView(CreateView):
         )
 
 
-class EditDishView(CreateView):
+class EditDishView(UpdateView):
     """
     veiw for add review page
     """
@@ -144,14 +144,12 @@ class EditDishView(CreateView):
         return context
 
     def get_queryset(self, *args, **kwargs):
-        return Dish.objects.filter(dish_id=self.kwargs['pk'])
-
-    initial = {'name': Dish.name}
+        return Dish.objects.filter(id=self.kwargs['pk'])
 
     def post(self, request, *args, **kwargs):
 
         dish_form = DishForm(data=request.POST)
-        initial = {"name":  'nname'}
+        
         if dish_form.is_valid():
             dish = dish_form.save(commit=False)
             dish.save()
