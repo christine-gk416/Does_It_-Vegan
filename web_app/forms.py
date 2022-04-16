@@ -23,6 +23,7 @@ class DishForm(forms.ModelForm):
             'name', 'description', 'price', 'image', 'type', 'restaurant',
         )
 
+
 class ReviewForm(forms.ModelForm):
     """
     creates a form to add a new dish for a restaurant

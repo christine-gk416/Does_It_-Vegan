@@ -16,11 +16,12 @@
                       <h2>{{dish.name|striptags}}</h2>
                       <p>price: £{{dish.price|striptags}}</p>
                       <p>description: {{dish.description|striptags}}</p>
+                      <a href="{% url 'edit_dish' restaurant.pk %}"><button type="button" class="btn btn-primary">Edit dish</button></a>
                 </div>
             {% endif %}
         {% endfor %}
         {% if user.is_authenticated %}
-        <a href="{% url 'add_dish' restaurant.pk %}"><button type="button" class="btn btn-primary">add dish</button></a>
+        <a href="{% url 'add_dish' restaurant.pk %}"><button type="button" class="btn btn-primary">Add dish</button></a>
         {% else %}
         <p>login in to add a dish or review <a class="nav-link" href="{% url 'login' %}">here!</a></p>
         {%endif%}

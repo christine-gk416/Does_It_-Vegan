@@ -7,6 +7,9 @@ urlpatterns = [
     path('sign_up/', views.SignUpView.as_view(), name='sign_up'),
     path('add_dish/<int:pk>', views.AddDishView.as_view(), name='add_dish'),
     path(
+        'edit_dish/<int:pk>', views.EditDishView.as_view(), name='edit_dish'
+    ),
+    path(
         'add_review/<int:pk>', views.AddReviewView.as_view(), name='add_review'
     ),
     path(
