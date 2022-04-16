@@ -34,6 +34,7 @@
                   <h2>{{review.name|striptags}}</h2>
                   <p>reviewd by:{{review.posted_by|striptags}}</p>
                   <p>body: {{review.body|striptags}}</p>
+                  <a href="{% url 'edit_review' review.pk %}"><button type="button" class="btn btn-primary">Edit Review</button></a>
             </div>
         {% endif %}
     {% endfor %}

@@ -130,10 +130,19 @@ class AddReviewView(CreateView):
 
 class EditDishView(UpdateView):
     """
-    veiw for add review page
+    veiw for editing dishes page
     """
     model = Dish
     form_class = DishForm
     template_name = 'edit_dish.html'
     success_url = "/"
 
+
+class EditReviewView(UpdateView):
+    """
+    veiw for editing dishes page
+    """
+    model = Review
+    form_class = ReviewForm
+    template_name = 'edit_review.html'
+    success_url = "/"
