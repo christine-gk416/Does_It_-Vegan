@@ -132,31 +132,8 @@ class EditDishView(UpdateView):
     """
     veiw for add review page
     """
-    model = Restaurant
+    model = Dish
     form_class = DishForm
     template_name = 'edit_dish.html'
+    success_url = "/"
 
-    def get_context_data(self, **kwargs):
-        # Call the base implementation first to get a context
-        context = super().get_context_data(**kwargs)
-        # Add in the publisher
-        context['dish'] = Dish.objects.all()
-        return context
-
-    def get_queryset(self, *args, **kwargs):
-        return Dish.objects.filter(id=self.kwargs['pk'])
-
-    def post(self, request, *args, **kwargs):
-
-        dish_form = DishForm(data=request.POST)
-        
-        if dish_form.is_valid():
-            dish = dish_form.save(commit=False)
-            dish.save()
-        else:
-            dish_form = DishForm()
-
-        return render(
-            request,
-            'index.html',
-        )
