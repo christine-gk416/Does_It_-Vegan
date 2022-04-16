@@ -13,7 +13,8 @@ urlpatterns = [
         'add_review/<int:pk>', views.AddReviewView.as_view(), name='add_review'
     ),
     path(
-        'edit_review/<int:pk>', views.EditReviewView.as_view(), name='edit_review'
+        'edit_review/<int:pk>', views.EditReviewView.as_view(),
+        name='edit_review'
     ),
     path(
         'restaurant_detail/<int:pk>',
