@@ -5,7 +5,7 @@ from django.views import generic, View
 from django.views.generic import DetailView
 from django.db.models import Q
 from .models import Restaurant, Dish, User, Review
-from .forms import SignUpForm, DishForm, ReviewForm
+from .forms import SignUpForm, DishForm, ReviewForm, RestaurantForm
 
 
 class RestaurantList(generic.ListView):
@@ -95,6 +95,23 @@ class AddDishView(CreateView):
             request,
             'index.html',
         )
+
+
+class AddRestaurantView(CreateView):
+    """
+    veiw for add review page
+    """
+    model = Restaurant
+    form_class = RestaurantForm
+    template_name = 'add_restaurant.html'
+    success_url = "/"
+
+    def form_valid(self, form):
+        Restaurant = form.save(commit=False)
+        name = Restaurant.name.replace(" ", "-")
+        Restaurant.slug = name
+        Restaurant.added_by = self.request.user
+        return super().form_valid(form)
 
 
 class AddReviewView(CreateView):
