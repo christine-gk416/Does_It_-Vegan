@@ -14,6 +14,10 @@ urlpatterns = [
         name='dish_confirm_delete'
     ),
     path(
+        'delete/<int:pk>', views.DeleteReviewView.as_view(),
+        name='review_confirm_delete'
+    ),
+    path(
         'add_review/<int:pk>', views.AddReviewView.as_view(), name='add_review'
     ),
     path(

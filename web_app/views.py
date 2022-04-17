@@ -154,3 +154,11 @@ class DeleteDishView(DeleteView):
     """
     model = Dish
     success_url = reverse_lazy('home')
+
+
+class DeleteReviewView(DeleteView):
+    """
+    veiw for deleting dishes
+    """
+    model = Dish
+    success_url = reverse_lazy('home')
