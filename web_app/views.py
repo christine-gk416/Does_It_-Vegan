@@ -6,7 +6,8 @@ from django.views.generic import DetailView
 from django.db.models import Q
 from .models import Restaurant, Dish, User, Review
 from .forms import SignUpForm, DishForm, ReviewForm, RestaurantForm
-
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 
 class RestaurantList(generic.ListView):
     """
@@ -66,6 +67,7 @@ class RestaurantDetailView(DetailView):
         return context
 
 
+@method_decorator(login_required, name='dispatch')
 class AddDishView(CreateView):
     """
     veiw for add dish page
@@ -97,6 +99,7 @@ class AddDishView(CreateView):
         )
 
 
+@method_decorator(login_required, name='dispatch')
 class AddRestaurantView(CreateView):
     """
     veiw for add review page
@@ -114,6 +117,7 @@ class AddRestaurantView(CreateView):
         return super().form_valid(form)
 
 
+@method_decorator(login_required, name='dispatch')
 class AddReviewView(CreateView):
     """
     veiw for add review page
@@ -145,6 +149,7 @@ class AddReviewView(CreateView):
         )
 
 
+@method_decorator(login_required, name='dispatch')
 class EditDishView(UpdateView):
     """
     veiw for editing dishes page
@@ -155,6 +160,7 @@ class EditDishView(UpdateView):
     success_url = "/"
 
 
+@method_decorator(login_required, name='dispatch')
 class EditReviewView(UpdateView):
     """
     veiw for editing dishes page
@@ -165,6 +171,7 @@ class EditReviewView(UpdateView):
     success_url = "/"
 
 
+@method_decorator(login_required, name='dispatch')
 class DeleteDishView(DeleteView):
     """
     veiw for deleting dishes
@@ -173,6 +180,7 @@ class DeleteDishView(DeleteView):
     success_url = reverse_lazy('home')
 
 
+@method_decorator(login_required, name='dispatch')
 class DeleteReviewView(DeleteView):
     """
     veiw for deleting dishes
