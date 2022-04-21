@@ -22,9 +22,9 @@
             {% endif %}
         {% endfor %}
         {% if user.is_authenticated %}
-        <a href="{% url 'add_dish' restaurant.pk %}"><button type="button" class="btn btn-primary">Add dish</button></a>
+            <a href="{% url 'add_dish' restaurant.pk %}"><button type="button" class="btn btn-primary">Add dish</button></a>
         {% else %}
-        <p>login in to add a dish or review <a class="nav-link" href="{% url 'login' %}">here!</a></p>
+            <p>login in to add a dish or review <a class="nav-link" href="{% url 'login' %}">here!</a></p>
         {%endif%}
 
         <!-- reveiw section -->

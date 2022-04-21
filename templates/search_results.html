@@ -23,7 +23,11 @@
                 </div>
             {% endfor %}
         {% else %}
-            <p>there are no cities that match your search on our system please try again</p>
+            {% if user.is_authenticated %}
+                <a href="{% url 'add_restauraunt' %}"><button type="button" class="btn btn-primary">add restaurant</button></a>
+            {% else %}
+                <p>there are no cities or restaurants that match your search on our system please try again or <a class="nav-link" href="{% url 'login' %}">login</a></p> to add a restaurant</p>
+            {% endif %}
         {% endif %}
         </div>
     </div>
