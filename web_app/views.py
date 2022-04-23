@@ -67,10 +67,10 @@ class RestaurantDetailView(DetailView):
         return context
 
 
-@method_decorator(login_required, name='dispatch')
+@method_decorator(login_required(login_url='/login/'), name='dispatch')
 class AddDishView(CreateView):
     """
-    veiw for add dish page
+    veiw for add dish page. can only be viewed if logged in 
     """
     model = Restaurant
     form_class = DishForm
@@ -99,7 +99,7 @@ class AddDishView(CreateView):
         )
 
 
-@method_decorator(login_required, name='dispatch')
+@method_decorator(login_required(login_url='/login/'), name='dispatch')
 class AddRestaurantView(CreateView):
     """
     veiw for add review page
@@ -117,7 +117,7 @@ class AddRestaurantView(CreateView):
         return super().form_valid(form)
 
 
-@method_decorator(login_required, name='dispatch')
+@method_decorator(login_required(login_url='/login/'), name='dispatch')
 class AddReviewView(CreateView):
     """
     veiw for add review page
@@ -149,7 +149,6 @@ class AddReviewView(CreateView):
         )
 
 
-@method_decorator(login_required, name='dispatch')
 class EditDishView(UpdateView):
     """
     veiw for editing dishes page
