@@ -38,5 +38,10 @@ urlpatterns = [
         views.SiteAdminView.as_view(),
         name='site_admin'
     ),
+    path(
+        'manage_reviews/',
+        views.ManagereviewsView.as_view(),
+        name='manage_reviews'
+    ),
     path('', include('django.contrib.auth.urls')),
 ]
