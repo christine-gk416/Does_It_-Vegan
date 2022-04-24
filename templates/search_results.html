@@ -18,8 +18,7 @@
                       <p>description: {{restaurant.description|striptags}}</p>
                       <p>town/city: {{restaurant.townCity|striptags}}</p>
                       <a href="{% url 'restaurant_detail' restaurant.pk %}"><button type="button" class="btn btn-primary">view</button></a>
-                 </div>
-
+                    </div>
                 </div>
             {% endfor %}
         {% else %}
@@ -29,7 +28,7 @@
                 <p>there are no cities or restaurants that match your search on our system please try again or <a class="nav-link" href="{% url 'login' %}">login</a></p> to add a restaurant</p>
             {% endif %}
         {% endif %}
-        </div>
     </div>
+</div>
 
 {% endblock %}

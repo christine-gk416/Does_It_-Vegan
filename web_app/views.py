@@ -188,3 +188,13 @@ class DeleteReviewView(DeleteView):
     """
     model = Dish
     success_url = reverse_lazy('home')
+
+
+class SiteAdminView(generic.ListView):
+    """
+    veiw for user sing up page
+    """
+
+    model = Restaurant
+    template_name = 'site_admin.html'
+

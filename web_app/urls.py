@@ -33,5 +33,10 @@ urlpatterns = [
         views.RestaurantDetailView.as_view(),
         name='restaurant_detail'
     ),
+    path(
+        'site_admin/',
+        views.SiteAdminView.as_view(),
+        name='site_admin'
+    ),
     path('', include('django.contrib.auth.urls')),
 ]

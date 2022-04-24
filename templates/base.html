@@ -27,17 +27,23 @@
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
               </li>
+              {% ifequal user.groups.all.0.name 'site-mod' %}
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'site_admin' %}">Admin page</a>
+                  </li>
+              {% endifequal %}
               {% if user.is_authenticated %}
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'logout' %}">log out</a>
-              </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'logout' %}">log out</a>
+                </li>
+    
               {% else %}
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'login' %}">login</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'sign_up' %}">Sign up</a>
-              </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'login' %}">login</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'sign_up' %}">Sign up</a>
+                </li>
               {% endif %}
             </ul>
           </div>
