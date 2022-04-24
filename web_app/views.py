@@ -198,11 +198,11 @@ class SiteAdminView(generic.ListView):
     model = Restaurant
     template_name = 'site_admin.html'
 
-class ManageReviewsView(UpdateView):
+
+class ManageReviewsView(generic.ListView()):
     """
     veiw for editing dishes page
     """
     model = Review
-    form_class = ManageReviewsForm
     template_name = 'manage_review.html'
     success_url = "/"
