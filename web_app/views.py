@@ -9,6 +9,9 @@ from .forms import SignUpForm, DishForm, ReviewForm, RestaurantForm
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 
+from django.contrib.auth.mixins import UserPassesTestMixin
+from .decorators import checkUserCreated
+
 class RestaurantList(generic.ListView):
     """
     creates generic list view for restaurants
@@ -149,6 +152,7 @@ class AddReviewView(CreateView):
         )
 
 
+@method_decorator(login_required(login_url='/login/'), name='dispatch')
 class EditDishView(UpdateView):
     """
     veiw for editing dishes page
@@ -159,7 +163,7 @@ class EditDishView(UpdateView):
     success_url = "/"
 
 
-@method_decorator(login_required, name='dispatch')
+@method_decorator(login_required(login_url='/login/'), name='dispatch')
 class EditReviewView(UpdateView):
     """
     veiw for editing dishes page
@@ -170,7 +174,7 @@ class EditReviewView(UpdateView):
     success_url = "/"
 
 
-@method_decorator(login_required, name='dispatch')
+@method_decorator(login_required(login_url='/login/'), name='dispatch')
 class DeleteDishView(DeleteView):
     """
     veiw for deleting dishes
@@ -179,7 +183,7 @@ class DeleteDishView(DeleteView):
     success_url = reverse_lazy('home')
 
 
-@method_decorator(login_required, name='dispatch')
+@method_decorator(login_required(login_url='/login/'), name='dispatch')
 class DeleteReviewView(DeleteView):
     """
     veiw for deleting dishes
