@@ -40,7 +40,7 @@ urlpatterns = [
     ),
     path(
         'manage_reviews/',
-        views.ManagereviewsView.as_view(),
+        views.ManageReviewsView.as_view(),
         name='manage_reviews'
     ),
     path('', include('django.contrib.auth.urls')),

@@ -5,7 +5,7 @@ from django.views import generic, View
 from django.views.generic import DetailView
 from django.db.models import Q
 from .models import Restaurant, Dish, User, Review
-from .forms import SignUpForm, DishForm, ReviewForm, RestaurantForm
+from .forms import SignUpForm, DishForm, ReviewForm, RestaurantForm, ManageReviewsForm
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 
@@ -203,6 +203,6 @@ class ManageReviewsView(UpdateView):
     veiw for editing dishes page
     """
     model = Review
-    form_class = ManageForm
+    form_class = ManageReviewsForm
     template_name = 'manage_review.html'
     success_url = "/"
