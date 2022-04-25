@@ -47,12 +47,24 @@ class Review(models.Model):
     """
     model for restaurant reviews
     """
+
+    class Approved(models.TextChoices):
+        """
+        preselected choices for review approval
+        """
+        APPRROVED = 'approved'
+        NOT_APPROVED = 'not approved'
+
     title = models.CharField(max_length=200, unique=True)
     restaurant = models.ForeignKey(
         Restaurant, on_delete=models.CASCADE, related_name='reviews')
     created_on = models.DateTimeField(auto_now_add=True)
     body = models.TextField()
-    approved = models.BooleanField(default=False)
+    approved = models.CharField(
+        max_length=100, unique=False,
+        choices=Approved.choices,
+        default=Approved.NOT_APPROVED,
+        )
     posted_by = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="review_added",
         null=True)
