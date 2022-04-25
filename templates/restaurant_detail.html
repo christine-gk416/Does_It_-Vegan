@@ -28,6 +28,7 @@
                             <a href="{% url 'dish_confirm_delete' dish.pk %}"><button type="button" class="btn btn-primary">Delete</button></a>
                         {% endif %}
                     </div>
+                </div>
             {% endif %}
         {% endfor %}
 
@@ -37,7 +38,11 @@
         {% else %}
             <p>login in to add a dish or review <a class="nav-link" href="{% url 'login' %}">here!</a></p>
         {%endif%}
+    </div>
+</div>
 
+<div class="container">
+    <div class="row">
         <!-- .......................... reveiw section -->
         <!-- .........creates individual cards for each review for the restaurant selected -->
         {% for review in review %}
@@ -59,6 +64,6 @@
     {% else %}
     <p>login in to add a dish or review <a class="nav-link" href="{% url 'login' %}">here!</a></p>
     {%endif%}
-        </div>
     </div>
+</div>
 {% endblock %}
