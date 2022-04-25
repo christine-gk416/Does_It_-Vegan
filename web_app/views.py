@@ -169,7 +169,7 @@ class EditReviewView(UpdateView):
     model = Review
     form_class = ReviewForm
     template_name = 'edit_review.html'
-    success_url = "/"
+    success_url = "home"
 
 
 @method_decorator(login_required(login_url='/login/'), name='dispatch')
@@ -210,3 +210,13 @@ class ManageReviewsView(generic.ListView):
         context = super().get_context_data(**kwargs)
         context['review'] = Review.objects.all()
         return context
+
+
+class ApproveReviewView(UpdateView):
+    """
+    veiw for approving reviews
+    """
+    model = Review
+    form_class = ManageReviewsForm
+    template_name = 'approve_review.html'
+    success_url = "home"

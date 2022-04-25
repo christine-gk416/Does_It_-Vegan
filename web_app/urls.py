@@ -43,5 +43,10 @@ urlpatterns = [
         views.ManageReviewsView.as_view(),
         name='manage_reviews'
     ),
+    path(
+        'approve_review/<int:pk>',
+        views.ApproveReviewView.as_view(),
+        name='approve_review'
+    ),
     path('', include('django.contrib.auth.urls')),
 ]
