@@ -6,11 +6,11 @@
     <div class="row">
         <h1>Manage reviews</h1>
         {% for review in reviews %}
-            {% if ! review.approved %}
+            {% if not review.approved %}
                 <div class="col">
                     <div class="card">
-                        <h2>Manage Reviews</h2>
-                        <p>Click bellow to manage reviews</p>
+                        <h2>{{ review.name}}</h2>
+                        <p>Click bellow to approve review</p>
                         <a href="{% url 'home' %}"><button type="button" class="btn btn-primary">Manage reviews</button></a>
                     </div>
                 </div>
