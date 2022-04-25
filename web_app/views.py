@@ -62,7 +62,7 @@ class RestaurantDetailView(DetailView):
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
         context = super().get_context_data(**kwargs)
-        # Add in the publisher
+        # Add in the models
         context['dish'] = Dish.objects.all()
         context['review'] = Review.objects.all()
         return context
@@ -205,4 +205,8 @@ class ManageReviewsView(generic.ListView):
     """
     model = Review
     template_name = 'manage_reviews.html'
-    success_url = "/"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['review'] = Review.objects.all()
+        return context

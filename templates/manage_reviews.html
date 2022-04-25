@@ -5,11 +5,11 @@
 <div class="container">
     <div class="row">
         <h1>Manage reviews</h1>
-        {% for review in reviews %}
-            {% if not review.approved %}
+        {% for review in review %}
+            {% if review.approved == False %}
                 <div class="col">
                     <div class="card">
-                        <h2>{{ review.name}}</h2>
+                        <h2>{{ review.title}}</h2>
                         <p>Click bellow to approve review</p>
                         <a href="{% url 'home' %}"><button type="button" class="btn btn-primary">Manage reviews</button></a>
                     </div>
