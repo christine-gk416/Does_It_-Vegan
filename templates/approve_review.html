@@ -10,9 +10,9 @@
                     <h2>{{review.title|striptags}}</h2>
                     <p>reviewd by:{{review.posted_by|striptags}}</p>
                     <p>body: {{review.body|striptags}}</p>
-                    <form action="post">
+                    <form method="post">
                         {% csrf_token %}{{form|crispy}}
-                        <a href="{% url 'home' %}"><button type="submit" class="btn btn-primary">Submit</button></a>
+                        <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
                    
                 </div>

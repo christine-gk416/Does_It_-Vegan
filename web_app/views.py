@@ -219,4 +219,4 @@ class ApproveReviewView(UpdateView):
     model = Review
     form_class = ManageReviewsForm
     template_name = 'approve_review.html'
-    success_url = "home"
+    success_url = "/"
