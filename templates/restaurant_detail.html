@@ -38,7 +38,7 @@
         <!-- .......................... reveiw section -->
         <!-- .........creates individual cards for each review for the restaurant selected -->
         {% for review in review %}
-        {% if review.restaurant.id == restaurant.id%}
+        {% if review.restaurant.id == restaurant.id and review.approved == true %}
             <div class="col">
                 <div class="card">
                     <h2>{{review.name|striptags}}</h2>
