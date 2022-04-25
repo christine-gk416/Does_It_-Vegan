@@ -14,10 +14,13 @@
         {% for dish in dish %}
             {% if dish.restaurant.id == restaurant.id%}
                 <div class="col">
-                    <div class="card">
-                        <h2>{{dish.name|striptags}}</h2>
-                        <p>price: £{{dish.price|striptags}}</p>
-                        <p>description: {{dish.description|striptags}}</p>
+                    <div class="card" style="width: 18rem;">
+                        <img src="{{ dish.image.url }}" class="card-img-top" alt="image of {{dish.name|striptags}}">
+                        <div class="card-body">
+                            <h2>{{dish.name|striptags}}</h2>
+                            <p>price: £{{dish.price|striptags}}</p>
+                            <p>description: {{dish.description|striptags}}</p>
+                        </div>
 
                         <!-- if the current usser created the dish the bellow buttons are displayed -->
                         {% if User == dish.posted_by %}
