@@ -71,18 +71,24 @@ class RestaurantDetailView(DetailView):
 @method_decorator(login_required(login_url='/login/'), name='dispatch')
 class AddDishView(CreateView):
     """
-    veiw for add dish page. can only be viewed if logged in 
+    veiw for add dish page. can only be viewed if logged in
     """
-    model = Restaurant
+    model = Dish
     form_class = DishForm
     template_name = 'add_dish.html'
 
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
         context = super().get_context_data(**kwargs)
-        # Add in the publisher
+        # Add in the model
         context['dish'] = Dish.objects.all()
         return context
+
+    def form_valid(self, form):
+        form.instance.restaurant = Restaurant.objects.get(
+            pk=self.kwargs['object_id']
+        )
+        return super().form_valid(form)
 
     def post(self, request, *args, **kwargs):
 
@@ -130,7 +136,7 @@ class AddReviewView(CreateView):
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
         context = super().get_context_data(**kwargs)
-        # Add in the publisher
+        # Add in the model
         context['review'] = Review.objects.all()
         return context
 

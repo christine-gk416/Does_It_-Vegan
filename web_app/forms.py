@@ -19,9 +19,10 @@ class DishForm(forms.ModelForm):
     """
     class Meta:
         model = Dish
-        fields = (
-            'name', 'description', 'price', 'image', 'type', 'restaurant',
-        )
+        # fields = (
+        #     'name', 'description', 'price', 'image', 'type',
+        # )
+        exclude = ('restaurant',)
 
 
 class EditDishForm(forms.ModelForm):
