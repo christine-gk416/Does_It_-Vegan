@@ -47,15 +47,15 @@ urlpatterns = [
     ),
     
     path(
-        'delete_dish/<int:pk>', views.DeleteDishView.as_view(),
+        'delete/dish/<int:pk>', views.DeleteDishView.as_view(),
         name='dish_confirm_delete'
     ),
     path(
-        'delete_review/<int:pk>', views.DeleteReviewView.as_view(),
+        'delete/review/<int:pk>', views.DeleteReviewView.as_view(),
         name='review_confirm_delete'
     ),
     path(
-        'delete_user/<int:pk>', views.DeleteUserView.as_view(),
+        'delete/user/<int:pk>', views.DeleteUserView.as_view(),
         name='user_confirm_delete'
     ),
     path('', include('django.contrib.auth.urls')),

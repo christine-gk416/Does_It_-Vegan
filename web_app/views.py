@@ -8,6 +8,7 @@ from .models import Restaurant, Dish, User, Review
 from .forms import SignUpForm, DishForm, ReviewForm, RestaurantForm, ManageReviewsForm
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+from django.contrib import messages
 
 
 class RestaurantList(generic.ListView):
@@ -51,6 +52,10 @@ class SignUpView(CreateView):
     form_class = SignUpForm
     success_url = reverse_lazy('login')
     template_name = 'sign_up.html'
+
+    def form_valid(self, form):
+        messages.success(self.request, 'Account created successfully')
+        return super().form_valid(form)
 
 
 class RestaurantDetailView(DetailView):
@@ -164,7 +169,7 @@ class DeleteReviewView(DeleteView):
     """
     veiw for deleting dishes
     """
-    model = Dish
+    model = Review
     success_url = reverse_lazy('home')
 
 

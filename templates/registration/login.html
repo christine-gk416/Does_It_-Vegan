@@ -7,5 +7,13 @@
     <button type="submit" class="btn btn-primary">Login</button>
     <P>Don't have a login? create one <a href="{% url 'login' %}">here!</a></P>
 </form>
+<!-- loads success massge if prompted -->
+{% if messages %}
+   {% for message in messages %}
+     <div class="alert alert-{{message.tags}}">
+       {{message}}
+     </div>
+   {% endfor %}
+{% endif %}
 
 {% endblock %}
