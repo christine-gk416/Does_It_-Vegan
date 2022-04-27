@@ -19,7 +19,7 @@ class DishForm(forms.ModelForm):
     """
     class Meta:
         model = Dish
-        exclude = ('restaurant',)
+        exclude = ('restaurant', 'posted_by',)
 
 
 class EditDishForm(forms.ModelForm):

@@ -79,14 +79,13 @@ class AddDishView(CreateView):
 
     def form_valid(self, form):
         form.instance.restaurant = Restaurant.objects.get(pk=self.kwargs['pk'])
+        form.instance.posted_by = self.request.user
         return super().form_valid(form)
     
     def get_success_url(self, **kwargs):
         # obj = form.instance or self.object
         pk=self.kwargs['pk']
         return reverse("restaurant_detail", args=(self.kwargs['pk'],))
-
-    
 
 
 @method_decorator(login_required(login_url='/login/'), name='dispatch')
