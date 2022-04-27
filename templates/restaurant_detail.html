@@ -23,7 +23,7 @@
                         </div>
 
                         <!-- if the current usser created the dish the bellow buttons are displayed -->
-                        {% if User == dish.posted_by %}
+                        {% if user == dish.posted_by %}
                             <a href="{% url 'edit_dish' dish.pk %}"><button type="button" class="btn btn-primary">Edit dish</button></a>
                             <a href="{% url 'dish_confirm_delete' dish.pk %}"><button type="button" class="btn btn-primary">Delete</button></a>
                         {% endif %}
@@ -33,7 +33,7 @@
         {% endfor %}
 
         <!-- if the user is logged in the add dish button is displayed if not the logg in to add dish/ review message is displayed -->
-        {% if user.is_authenticated %}
+        {% if request.user.is_authenticated %}
             <a href="{% url 'add_dish' restaurant.pk %}"><button type="button" class="btn btn-primary">Add dish</button></a>
         {% else %}
             <p>login in to add a dish or review <a class="nav-link" href="{% url 'login' %}">here!</a></p>

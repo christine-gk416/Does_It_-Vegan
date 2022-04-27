@@ -1,8 +1,8 @@
-from django.shortcuts import render, get_object_or_404, reverse
+from django.shortcuts import render, get_object_or_404, reverse, HttpResponseRedirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.views import generic, View
-from django.views.generic import DetailView
+from django.views.generic import DetailView, ListView
 from django.db.models import Q
 from .models import Restaurant, Dish, User, Review
 from .forms import SignUpForm, DishForm, ReviewForm, RestaurantForm, ManageReviewsForm
@@ -40,6 +40,8 @@ class SearchResultsView(generic.ListView):
             Q(townCity__iexact=query)
         )
         return restaurant_list
+      
+
 
 
 class SignUpView(CreateView):
@@ -196,3 +198,19 @@ class ApproveReviewView(UpdateView):
     form_class = ManageReviewsForm
     template_name = 'approve_review.html'
     success_url = "/"
+
+
+class UserListView(ListView):
+    """
+    veiw for vieing list of users
+    """
+    model = User
+    template_name = 'manage_users.html'
+
+
+class DeleteUserView(DeleteView):
+    """
+    veiw for deleting dishes
+    """
+    model = User
+    success_url = reverse_lazy('home')

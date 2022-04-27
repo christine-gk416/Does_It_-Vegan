@@ -14,14 +14,6 @@ urlpatterns = [
         'edit_dish/<int:pk>', views.EditDishView.as_view(), name='edit_dish'
     ),
     path(
-        'delete/<int:pk>', views.DeleteDishView.as_view(),
-        name='dish_confirm_delete'
-    ),
-    path(
-        'delete/<int:pk>', views.DeleteReviewView.as_view(),
-        name='review_confirm_delete'
-    ),
-    path(
         'add_review/<int:pk>', views.AddReviewView.as_view(), name='add_review'
     ),
     path(
@@ -47,6 +39,24 @@ urlpatterns = [
         'approve_review/<int:pk>',
         views.ApproveReviewView.as_view(),
         name='approve_review'
+    ),
+    path(
+        'manage_users',
+        views.UserListView.as_view(),
+        name='manage_users'
+    ),
+    
+    path(
+        'delete_dish/<int:pk>', views.DeleteDishView.as_view(),
+        name='dish_confirm_delete'
+    ),
+    path(
+        'delete_review/<int:pk>', views.DeleteReviewView.as_view(),
+        name='review_confirm_delete'
+    ),
+    path(
+        'delete_user/<int:pk>', views.DeleteUserView.as_view(),
+        name='user_confirm_delete'
     ),
     path('', include('django.contrib.auth.urls')),
 ]

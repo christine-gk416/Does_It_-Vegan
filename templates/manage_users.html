@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <h1>Manage users</h1>
+        <h1>User List</h1>
+        <ul>
+        {% for users in object_list %}
+            {% if not users.is_staff and not users.has_group %}
+                <li>{{ users.username }} <a href="{% url 'user_confirm_delete' users.pk %}"><button type="button" class="btn btn-primary">Delete</button></a></li>
+            {% endif %}
+        {% endfor %}
+        </ul>
+
+    </div>
+</div>
+
+
+{% endblock %}
