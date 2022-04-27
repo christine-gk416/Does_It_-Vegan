@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, reverse
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.views import generic, View
@@ -77,33 +77,16 @@ class AddDishView(CreateView):
     form_class = DishForm
     template_name = 'add_dish.html'
 
-    def get_context_data(self, **kwargs):
-        # Call the base implementation first to get a context
-        context = super().get_context_data(**kwargs)
-        # Add in the model
-        context['dish'] = Dish.objects.all()
-        return context
-
     def form_valid(self, form):
-        form.instance.restaurant = Restaurant.objects.get(
-            pk=self.kwargs['object_id']
-        )
+        form.instance.restaurant = Restaurant.objects.get(pk=self.kwargs['pk'])
         return super().form_valid(form)
+    
+    def get_success_url(self, **kwargs):
+        # obj = form.instance or self.object
+        pk=self.kwargs['pk']
+        return reverse("restaurant_detail", args=(self.kwargs['pk'],))
 
-    def post(self, request, *args, **kwargs):
-
-        dish_form = DishForm(data=request.POST)
-
-        if dish_form.is_valid():
-            dish = dish_form.save(commit=False)
-            dish.save()
-        else:
-            dish_form = DishForm()
-
-        return render(
-            request,
-            'index.html',
-        )
+    
 
 
 @method_decorator(login_required(login_url='/login/'), name='dispatch')

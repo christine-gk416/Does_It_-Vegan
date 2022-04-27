@@ -6,5 +6,8 @@
     {% csrf_token %}{{form|crispy}}
     <button type="submit" class="btn btn-primary">add dish</button>
 </form>
+<div>
+    <pre>{% filter force_escape %}{% debug %}{% endfilter %}</pre>
+</div>
 
 {% endblock %}
