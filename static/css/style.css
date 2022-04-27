@@ -1,3 +1,15 @@
+/* ....................................nav */
+
 .navbar-nav {
     margin-left: auto;
+    font-weight: bold;
+}
+
+.bg-light {
+    background-color: #4BBB76!important;
+}
+
+/* ....................................general */
+body {
+    background-color: rgb(150, 215, 175);
 }
