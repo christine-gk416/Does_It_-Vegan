@@ -19,9 +19,6 @@ class DishForm(forms.ModelForm):
     """
     class Meta:
         model = Dish
-        # fields = (
-        #     'name', 'description', 'price', 'image', 'type',
-        # )
         exclude = ('restaurant',)
 
 
@@ -31,9 +28,7 @@ class EditDishForm(forms.ModelForm):
     """
     class Meta:
         model = Dish
-        fields = (
-            'name', 'description', 'price', 'image', 'type',
-        )
+        exclude = ('restaurant',)
 
 
 class ReviewForm(forms.ModelForm):
@@ -42,9 +37,7 @@ class ReviewForm(forms.ModelForm):
     """
     class Meta:
         model = Review
-        fields = (
-            'title', 'body', 'posted_by', 'restaurant',
-        )
+        exclude = ('restaurant', 'approved',)
 
 
 class RestaurantForm(forms.ModelForm):

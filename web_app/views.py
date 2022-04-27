@@ -112,31 +112,18 @@ class AddReviewView(CreateView):
     """
     veiw for add review page
     """
-    model = Restaurant
+    model = Review
     form_class = ReviewForm
     template_name = 'add_review.html'
 
-    def get_context_data(self, **kwargs):
-        # Call the base implementation first to get a context
-        context = super().get_context_data(**kwargs)
-        # Add in the model
-        context['review'] = Review.objects.all()
-        return context
-
-    def post(self, request, *args, **kwargs):
-
-        review_form = ReviewForm(data=request.POST)
-
-        if review_form.is_valid():
-            review = review_form.save(commit=False)
-            review.save()
-        else:
-            review_form = reviewForm()
-
-        return render(
-            request,
-            'index.html',
-        )
+    def form_valid(self, form):
+        form.instance.restaurant = Restaurant.objects.get(pk=self.kwargs['pk'])
+        return super().form_valid(form)
+    
+    def get_success_url(self, **kwargs):
+        # obj = form.instance or self.object
+        pk=self.kwargs['pk']
+        return reverse("restaurant_detail", args=(self.kwargs['pk'],))
 
 
 @method_decorator(login_required(login_url='/login/'), name='dispatch')
