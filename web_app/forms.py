@@ -37,7 +37,7 @@ class ReviewForm(forms.ModelForm):
     """
     class Meta:
         model = Review
-        exclude = ('restaurant', 'approved',)
+        exclude = ('restaurant', 'approved', 'posted_by',)
 
 
 class RestaurantForm(forms.ModelForm):
