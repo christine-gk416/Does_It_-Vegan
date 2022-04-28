@@ -44,8 +44,6 @@ class SearchResultsView(generic.ListView):
         return restaurant_list
       
 
-
-
 class SignUpView(CreateView):
     """
     veiw for user sing up page
@@ -93,7 +91,7 @@ class AddDishView(SuccessMessageMixin, CreateView):
     
     def get_success_url(self, **kwargs):
         # obj = form.instance or self.object
-        pk=self.kwargs['pk']
+        pk = self.kwargs['pk']
         return reverse("restaurant_detail", args=(self.kwargs['pk'],))
 
 
@@ -133,7 +131,7 @@ class AddReviewView(SuccessMessageMixin, CreateView):
     
     def get_success_url(self, **kwargs):
         # obj = form.instance or self.object
-        pk=self.kwargs['pk']
+        pk = self.kwargs['pk']
         return reverse("restaurant_detail", args=(self.kwargs['pk'],))
 
 
@@ -147,14 +145,9 @@ class EditDishView(SuccessMessageMixin, UpdateView):
     template_name = 'edit_dish.html'
     success_message = "Dish successfully updated!"
 
-
     def get_success_url(self, **kwargs):
-        # obj = form.instance or self.object
-        pk = self.kwargs['pk']
-        dish = Dish.pk
-        print(dish.restaurant)
-        
-        return reverse("restaurant_detail", args=(pk,))
+        dish = Dish.objects.get(id=self.kwargs['pk'])
+        return reverse("restaurant_detail", kwargs={'pk': dish.restaurant.id})
 
 @method_decorator(login_required(login_url='/login/'), name='dispatch')
 class EditReviewView(UpdateView):
