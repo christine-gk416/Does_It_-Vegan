@@ -150,7 +150,7 @@ class EditDishView(SuccessMessageMixin, UpdateView):
         return reverse("restaurant_detail", kwargs={'pk': dish.restaurant.id})
 
 @method_decorator(login_required(login_url='/login/'), name='dispatch')
-class EditReviewView(UpdateView):
+class EditReviewView(SuccessMessageMixin, UpdateView):
     """
     veiw for editing dishes page
     """
@@ -158,6 +158,11 @@ class EditReviewView(UpdateView):
     form_class = ReviewForm
     template_name = 'edit_review.html'
     success_url = "home"
+    success_message = "Dish successfully updated!"
+
+    def get_success_url(self, **kwargs):
+        review = Review.objects.get(id=self.kwargs['pk'])
+        return reverse("restaurant_detail", kwargs={'pk': review.restaurant.id})
 
 
 @method_decorator(login_required(login_url='/login/'), name='dispatch')
