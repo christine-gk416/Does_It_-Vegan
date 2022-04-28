@@ -42,7 +42,7 @@ class ReviewForm(forms.ModelForm):
 
 class RestaurantForm(forms.ModelForm):
     """
-    creates a form to add a new restaurant 
+    creates a form to add a new restaurant
     """
     class Meta:
         model = Restaurant

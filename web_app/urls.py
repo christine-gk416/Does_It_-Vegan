@@ -45,7 +45,6 @@ urlpatterns = [
         views.UserListView.as_view(),
         name='manage_users'
     ),
-    
     path(
         'delete/dish/<int:pk>', views.DeleteDishView.as_view(),
         name='dish_confirm_delete'
