@@ -1,11 +1,13 @@
-from django.shortcuts import render, get_object_or_404, reverse, HttpResponseRedirect
+from django.shortcuts import render, get_object_or_404, reverse
+from django.shortcuts import HttpResponseRedirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.views import generic, View
 from django.views.generic import DetailView, ListView
 from django.db.models import Q
 from .models import Restaurant, Dish, User, Review
-from .forms import SignUpForm, DishForm, ReviewForm, RestaurantForm, ManageReviewsForm
+from .forms import SignUpForm, DishForm, ReviewForm, RestaurantForm
+from .forms import ManageReviewsForm
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.contrib import messages
@@ -42,7 +44,7 @@ class SearchResultsView(generic.ListView):
             Q(townCity__iexact=query)
         )
         return restaurant_list
-      
+
 
 class SignUpView(CreateView):
     """
@@ -88,7 +90,7 @@ class AddDishView(SuccessMessageMixin, CreateView):
         form.instance.restaurant = Restaurant.objects.get(pk=self.kwargs['pk'])
         form.instance.posted_by = self.request.user
         return super().form_valid(form)
-    
+
     def get_success_url(self, **kwargs):
         # obj = form.instance or self.object
         pk = self.kwargs['pk']
@@ -128,7 +130,7 @@ class AddReviewView(SuccessMessageMixin, CreateView):
         form.instance.restaurant = Restaurant.objects.get(pk=self.kwargs['pk'])
         form.instance.posted_by = self.request.user
         return super().form_valid(form)
-    
+
     def get_success_url(self, **kwargs):
         # obj = form.instance or self.object
         pk = self.kwargs['pk']
@@ -149,6 +151,7 @@ class EditDishView(SuccessMessageMixin, UpdateView):
         dish = Dish.objects.get(id=self.kwargs['pk'])
         return reverse("restaurant_detail", kwargs={'pk': dish.restaurant.id})
 
+
 @method_decorator(login_required(login_url='/login/'), name='dispatch')
 class EditReviewView(SuccessMessageMixin, UpdateView):
     """
@@ -162,7 +165,9 @@ class EditReviewView(SuccessMessageMixin, UpdateView):
 
     def get_success_url(self, **kwargs):
         review = Review.objects.get(id=self.kwargs['pk'])
-        return reverse("restaurant_detail", kwargs={'pk': review.restaurant.id})
+        return reverse(
+            "restaurant_detail", kwargs={'pk': review.restaurant.id}
+        )
 
 
 @method_decorator(login_required(login_url='/login/'), name='dispatch')
@@ -229,3 +234,4 @@ class DeleteUserView(DeleteView):
     """
     model = User
     success_url = reverse_lazy('home')
+    template_name = "web_app/user_confirm_delete.html"
