@@ -9,6 +9,7 @@ from .forms import SignUpForm, DishForm, ReviewForm, RestaurantForm, ManageRevie
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.contrib import messages
+from django.contrib.messages.views import SuccessMessageMixin
 
 
 class RestaurantList(generic.ListView):
@@ -76,13 +77,14 @@ class RestaurantDetailView(DetailView):
 
 
 @method_decorator(login_required(login_url='/login/'), name='dispatch')
-class AddDishView(CreateView):
+class AddDishView(SuccessMessageMixin, CreateView):
     """
     veiw for add dish page. can only be viewed if logged in
     """
     model = Dish
     form_class = DishForm
     template_name = 'add_dish.html'
+    success_message = "Dish successfully added!"
 
     def form_valid(self, form):
         form.instance.restaurant = Restaurant.objects.get(pk=self.kwargs['pk'])
