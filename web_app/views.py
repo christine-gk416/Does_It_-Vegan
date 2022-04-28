@@ -98,7 +98,7 @@ class AddDishView(SuccessMessageMixin, CreateView):
 
 
 @method_decorator(login_required(login_url='/login/'), name='dispatch')
-class AddRestaurantView(CreateView):
+class AddRestaurantView(SuccessMessageMixin, CreateView):
     """
     veiw for add review page
     """
@@ -106,6 +106,7 @@ class AddRestaurantView(CreateView):
     form_class = RestaurantForm
     template_name = 'add_restaurant.html'
     success_url = "/"
+    success_message = "restaurant successfully added!"
 
     def form_valid(self, form):
         Restaurant = form.save(commit=False)
@@ -116,13 +117,14 @@ class AddRestaurantView(CreateView):
 
 
 @method_decorator(login_required(login_url='/login/'), name='dispatch')
-class AddReviewView(CreateView):
+class AddReviewView(SuccessMessageMixin, CreateView):
     """
     veiw for add review page
     """
     model = Review
     form_class = ReviewForm
     template_name = 'add_review.html'
+    success_message = "Review successfully added!"
 
     def form_valid(self, form):
         form.instance.restaurant = Restaurant.objects.get(pk=self.kwargs['pk'])
@@ -136,15 +138,23 @@ class AddReviewView(CreateView):
 
 
 @method_decorator(login_required(login_url='/login/'), name='dispatch')
-class EditDishView(UpdateView):
+class EditDishView(SuccessMessageMixin, UpdateView):
     """
     veiw for editing dishes page
     """
     model = Dish
     form_class = DishForm
     template_name = 'edit_dish.html'
-    success_url = "/"
+    success_message = "Dish successfully updated!"
 
+
+    def get_success_url(self, **kwargs):
+        # obj = form.instance or self.object
+        pk = self.kwargs['pk']
+        dish = Dish.pk
+        print(dish.restaurant)
+        
+        return reverse("restaurant_detail", args=(pk,))
 
 @method_decorator(login_required(login_url='/login/'), name='dispatch')
 class EditReviewView(UpdateView):
