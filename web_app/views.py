@@ -158,7 +158,7 @@ class EditReviewView(SuccessMessageMixin, UpdateView):
     form_class = ReviewForm
     template_name = 'edit_review.html'
     success_url = "home"
-    success_message = "Dish successfully updated!"
+    success_message = "Review successfully updated!"
 
     def get_success_url(self, **kwargs):
         review = Review.objects.get(id=self.kwargs['pk'])
