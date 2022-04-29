@@ -20,8 +20,8 @@
                             <img src="{{ restaurant.image.url }}" class="card-img-top" alt="image of {{restaurant.name|striptags}}">  
                         {% endif %}
                         <h2>{{restaurant.name|striptags}}</h2>
-                        <p>description: {{restaurant.description|striptags}}</p>
-                        <p>town/city: {{restaurant.townCity|striptags}}</p>
+                        <p>Description: {{restaurant.description|striptags}}</p>
+                        <p>Town/city: {{restaurant.townCity|striptags}}</p>
                         <p>Adress: {{restaurant.adress|striptags}}</p>
                         <a href="{% url 'restaurant_detail' restaurant.pk %}"><button type="button" class="btn btn-primary">view</button></a>
                     </div>
