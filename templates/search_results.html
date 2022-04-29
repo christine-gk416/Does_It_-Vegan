@@ -13,7 +13,7 @@
         {% if restaurant_list %}
             {% for restaurant in restaurant_list %}
                 <div class="col">
-                    <div class="card"  style="width: 18rem;">
+                    <div class="card card-main"  style="width: 18rem;">
                         {% if "placeholder" in restaurant.image.url%}
                             <img src="{% static 'images/go-vegan.jpg' %}" class="card-img-top" alt="place holder image">  
                         {% else %}
