@@ -14,7 +14,7 @@ class Restaurant(models.Model):
     added_by = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="restaurant_added")
     updated_on = models.DateField(auto_now=True)
-    description = models.TextField()
+    description = models.CharField(max_length=100)
     status = models.IntegerField(choices=STATUS, default=0)
     likes = models.ManyToManyField(
         User, related_name='restaurant_likes', blank=True)
@@ -100,7 +100,7 @@ class Dish(models.Model):
     name = models.CharField(max_length=100, unique=True)
     image = CloudinaryField('image', default='placeholder_dish')
     price = models.FloatField()
-    description = models.TextField()
+    description = models.CharField(max_length=100)
     created_on = models.DateTimeField(auto_now_add=True)
     posted_by = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="dish_added",
