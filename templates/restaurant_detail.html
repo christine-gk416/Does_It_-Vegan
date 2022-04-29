@@ -38,8 +38,10 @@
 
                         <!-- if the current usser created the dish the bellow buttons are displayed -->
                         {% if user == dish.posted_by %}
-                            <a href="{% url 'edit_dish' dish.pk %}"><button type="button" class="btn btn-primary">Edit dish</button></a>
-                            <a href="{% url 'dish_confirm_delete' dish.pk %}"><button type="button" class="btn btn-primary">Delete</button></a>
+                            <div class='container'>
+                                <span><a href="{% url 'edit_dish' dish.pk %}"><button type="button" class="btn btn-primary col">Edit dish</button></a></span>
+                                <span><a href="{% url 'dish_confirm_delete' dish.pk %}"><button type="button" class="btn btn-danger col">Delete</button></a></span>
+                            </div>
                         {% endif %}
                     </div>
                 </div>
@@ -67,8 +69,10 @@
                     <p>reviewd by:{{review.posted_by|striptags}}</p>
                     <p>body: {{review.body|striptags}}</p>
                     {% if user.id == review.posted_by.id %}
-                        <a href="{% url 'edit_review' review.pk %}"><button type="button" class="btn btn-primary">Edit Review</button></a>
-                        <a href="{% url 'review_confirm_delete' review.pk %}"><button type="button" class="btn btn-primary">Delete</button></a>
+                        <div class="container">
+                            <span><a href="{% url 'edit_review' review.pk %}"><button type="button" class="btn btn-primary col">Edit Review</button></a></span>
+                            <span><a href="{% url 'review_confirm_delete' review.pk %}"><button type="button" class="btn btn-danger col">Delete</button></a></span>
+                        </div>
                     {% endif %}
                 </div>
         {% endif %}
