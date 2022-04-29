@@ -1,4 +1,5 @@
 from django.test import TestCase
+from django.test import Client
 from .models import Restaurant, Dish
 from django.contrib.auth.models import User
 # Create your tests here.
@@ -13,7 +14,7 @@ class TestViews(TestCase):
         # Set up non-modified objects used by all test methods
 
         User.objects.create(
-            username='Test User'
+            username='testUser'
         )
 
         Restaurant.objects.create(
@@ -30,6 +31,12 @@ class TestViews(TestCase):
             description='Test Dish Description',
             restaurant=Restaurant.objects.get(id=1),
             type='Main'
+        )
+    
+    def setUp(self):
+        self.user = User.objects.create_user(
+            username="testUser",
+            password="testPassword",
         )
 
 
@@ -64,4 +71,16 @@ class TestViews(TestCase):
         response = self.client.get('/search/')
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'search_results.html')
+
+    def test_add_dish(self):
+        """
+        test if the add_dish.html page returns a 200 status code
+        """
+        client = Client()
+        client.login(username="testUser", password="testPassword")
+        response = self.client.get('/add_dish/1')
+        print(response['location'])
+        
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'add_dish.html')
         

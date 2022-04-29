@@ -2,25 +2,44 @@
 
 {% block content %}
 <!-- ................................. main content for admin page -->
-<div class="container">
-    <div class="row">
-        <h1>Site Admin Page</h1>
-        <!-- .........................manage reviews card -->
-        <div class="col">
-            <div class="card">
-                <h2>Manage Reviews</h2>
-                <p>Click bellow to manage reviews</p>
-                <a href="{% url 'manage_reviews' %}"><button type="button" class="btn btn-primary">Manage reviews</button></a>
+<main>
+    {% if user.is_staff or user.has_group %}
+    
+    
+    <div class="container">
+        <div class="row">
+            <h1>Site Admin Page</h1>
+            <!-- .........................manage reviews card -->
+            <div class="col">
+                <div class="card">
+                    <h2>Manage Reviews</h2>
+                    <p>Click bellow to manage reviews</p>
+                    <a href="{% url 'manage_reviews' %}"><button type="button" class="btn btn-primary">Manage reviews</button></a>
+                </div>
             </div>
-        </div>
-        <!-- .........................manage users card -->
-        <div class="col">
-            <div class="card">
-                <h2>Manage Users</h2>
-                <p>Click bellow to manage Users</p>
-                <a href="{% url 'manage_users' %}"><button type="button" class="btn btn-primary">Manage Users</button></a>
+            <!-- .........................manage users card -->
+            <div class="col">
+                <div class="card">
+                    <h2>Manage Users</h2>
+                    <p>Click bellow to manage Users</p>
+                    <a href="{% url 'manage_users' %}"><button type="button" class="btn btn-primary">Manage Users</button></a>
+                </div>
             </div>
         </div>
     </div>
-</div>
+    {% else %}
+    <div class="container">
+        <div class="row">
+            <h1>Site Admin Page</h1>
+            <!-- .........................manage reviews card -->
+            <div class="col">
+                <div class="card">
+                    <h2>Access denied</h2>
+                    <p>you mus be logged in as site-admin to view this page</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</main>
 {% endblock %}
