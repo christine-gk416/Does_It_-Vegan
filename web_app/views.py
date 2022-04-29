@@ -210,14 +210,16 @@ class ManageReviewsView(generic.ListView):
         return context
 
 
-class ApproveReviewView(UpdateView):
+class ApproveReviewView(SuccessMessageMixin, UpdateView):
     """
     veiw for approving reviews
     """
     model = Review
     form_class = ManageReviewsForm
     template_name = 'approve_review.html'
-    success_url = "/"
+    success_url = reverse_lazy('manage_reviews')
+    success_message = "Review status updated"
+
 
 
 class UserListView(ListView):
