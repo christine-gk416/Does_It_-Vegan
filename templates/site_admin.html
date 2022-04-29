@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 
 {% block content %}
-
+<!-- ................................. main content for admin page -->
 <div class="container">
     <div class="row">
         <h1>Site Admin Page</h1>
-        
+        <!-- .........................manage reviews card -->
         <div class="col">
             <div class="card">
                 <h2>Manage Reviews</h2>
@@ -13,7 +13,7 @@
                 <a href="{% url 'manage_reviews' %}"><button type="button" class="btn btn-primary">Manage reviews</button></a>
             </div>
         </div>
-
+        <!-- .........................manage users card -->
         <div class="col">
             <div class="card">
                 <h2>Manage Users</h2>
@@ -23,6 +23,4 @@
         </div>
     </div>
 </div>
-
-
 {% endblock %}

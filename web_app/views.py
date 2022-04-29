@@ -221,7 +221,6 @@ class ApproveReviewView(SuccessMessageMixin, UpdateView):
     success_message = "Review status updated"
 
 
-
 class UserListView(ListView):
     """
     veiw for vieing list of users
@@ -235,5 +234,5 @@ class DeleteUserView(DeleteView):
     veiw for deleting dishes
     """
     model = User
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('manage_users')
     template_name = "web_app/user_confirm_delete.html"

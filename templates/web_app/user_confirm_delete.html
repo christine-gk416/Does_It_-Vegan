@@ -4,9 +4,9 @@
 <h2>Delete item</h2>
 <form method="post">
     {% csrf_token %}{{form|crispy}}
-    <p>Are you sure you want to delete?</p>
-
-    <input class="btn" type="submit" value="Confirm">
+    <p>Are you sure you want to delete the user?</p>
+    <button class="btn" type="submit">Confirm</button>
+    
 </form>
 
 {% endblock %}
