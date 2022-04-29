@@ -27,6 +27,13 @@ body {
 
 /* ....................................general */
 
+/* ....................................cards */
+
+.card-main {
+    height: 484px;
+    margin-bottom: 5px;
+}
+
 .title-card {
     background-color: #4BBB76;
 }

@@ -24,7 +24,7 @@
         {% for dish in dish %}
             {% if dish.restaurant.id == restaurant.id %}
                 <div class="col">
-                    <div class="card mt-5" style="width: 18rem;">
+                    <div class="card mt-5 card-main" style="width: 18rem;">
                         {% if "placeholder" in dish.image.url%}
                             <img src="{% static 'images/go-vegan.jpg' %}" class="card-img-top" alt="place holder image">
                         {% else %}
