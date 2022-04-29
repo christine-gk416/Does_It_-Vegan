@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% load static %}
 {% block content %}
 
 <div class="container">
@@ -14,7 +14,12 @@
             {% for restaurant in restaurant_list %}
                 <div class="col">
                     <div class="card"  style="width: 18rem;">
-                        <img src="{{ restaurant.image.url }}" class="card-img-top" alt="image of {{restaurant.name|striptags}}">  
+                        {% if "placeholder" in restaurant.image.url%}
+            
+                            <img src="{% static 'images/go-vegan.jpg' %}" class="card-img-top" alt="image of {{restaurant.name|striptags}}">  
+                        {% else %}
+                            <img src="{{ restaurant.image.url }}" class="card-img-top" alt="image of {{restaurant.name|striptags}}">  
+                        {% endif %}
                         <h2>{{restaurant.name|striptags}}</h2>
                         <p>description: {{restaurant.description|striptags}}</p>
                         <p>town/city: {{restaurant.townCity|striptags}}</p>
