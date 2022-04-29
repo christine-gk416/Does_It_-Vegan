@@ -15,8 +15,7 @@
                 <div class="col">
                     <div class="card"  style="width: 18rem;">
                         {% if "placeholder" in restaurant.image.url%}
-            
-                            <img src="{% static 'images/go-vegan.jpg' %}" class="card-img-top" alt="image of {{restaurant.name|striptags}}">  
+                            <img src="{% static 'images/go-vegan.jpg' %}" class="card-img-top" alt="place holder image">  
                         {% else %}
                             <img src="{{ restaurant.image.url }}" class="card-img-top" alt="image of {{restaurant.name|striptags}}">  
                         {% endif %}
@@ -36,5 +35,4 @@
         {% endif %}
     </div>
 </div>
-
 {% endblock %}

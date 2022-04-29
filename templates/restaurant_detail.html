@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% load static %}
 {% block content %}
 
 <!-- ...........................displays messages -->
@@ -22,10 +22,14 @@
 
         <!-- .........creates individual cards for each dish for the restaurant selected -->
         {% for dish in dish %}
-            {% if dish.restaurant.id == restaurant.id%}
+            {% if dish.restaurant.id == restaurant.id %}
                 <div class="col">
                     <div class="card" style="width: 18rem;">
-                        <img src="{{ dish.image.url }}" class="card-img-top" alt="image of {{dish.name|striptags}}">
+                        {% if "placeholder" in dish.image.url%}
+                            <img src="{% static 'images/go-vegan.jpg' %}" class="card-img-top" alt="place holder image">
+                        {% else %}
+                            <img src="{{ dish.image.url }}" class="card-img-top" alt="image of {{dish.name|striptags}}">
+                        {% endif %}
                         <div class="card-body">
                             <h2>{{dish.name|striptags}}</h2>
                             <p>price: £{{dish.price|striptags}}</p>
