@@ -13,11 +13,12 @@
         {% if restaurant_list %}
             {% for restaurant in restaurant_list %}
                 <div class="col">
-                    <div class="card">
-                      <h2>{{restaurant.name|striptags}}</h2>
-                      <p>description: {{restaurant.description|striptags}}</p>
-                      <p>town/city: {{restaurant.townCity|striptags}}</p>
-                      <a href="{% url 'restaurant_detail' restaurant.pk %}"><button type="button" class="btn btn-primary">view</button></a>
+                    <div class="card"  style="width: 18rem;">
+                        <img src="{{ restaurant.image.url }}" class="card-img-top" alt="image of {{restaurant.name|striptags}}">  
+                        <h2>{{restaurant.name|striptags}}</h2>
+                        <p>description: {{restaurant.description|striptags}}</p>
+                        <p>town/city: {{restaurant.townCity|striptags}}</p>
+                        <a href="{% url 'restaurant_detail' restaurant.pk %}"><button type="button" class="btn btn-primary">view</button></a>
                     </div>
                 </div>
             {% endfor %}
