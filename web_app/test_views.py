@@ -13,8 +13,9 @@ class TestViews(TestCase):
     def setUpTestData(cls):
         # Set up non-modified objects used by all test methods
 
-        User.objects.create(
-            username='testUser'
+        User.objects.create_user(
+            username='testUser',
+            password="testPassword"
         )
 
         Restaurant.objects.create(
@@ -32,13 +33,6 @@ class TestViews(TestCase):
             restaurant=Restaurant.objects.get(id=1),
             type='Main'
         )
-    
-    def setUp(self):
-        self.user = User.objects.create_user(
-            username="testUser",
-            password="testPassword",
-        )
-
 
     def test_index(self):
         """
@@ -72,15 +66,3 @@ class TestViews(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'search_results.html')
 
-    def test_add_dish(self):
-        """
-        test if the add_dish.html page returns a 200 status code
-        """
-        client = Client()
-        client.login(username="testUser", password="testPassword")
-        response = self.client.get('/add_dish/1')
-        print(response['location'])
-        
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'add_dish.html')
-        
