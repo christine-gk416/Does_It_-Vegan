@@ -4,11 +4,12 @@ from .models import Restaurant, Dish
 from django.contrib.auth.models import User
 # Create your tests here.
 
+
 class TestViews(TestCase):
     """
     test for views will be defined in this class
     """
-    
+
     @classmethod
     def setUpTestData(cls):
         # Set up non-modified objects used by all test methods
@@ -65,4 +66,3 @@ class TestViews(TestCase):
         response = self.client.get('/search/')
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'search_results.html')
-
