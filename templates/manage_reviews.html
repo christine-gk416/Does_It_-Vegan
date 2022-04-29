@@ -1,32 +1,46 @@
 {% extends "base.html" %}
 
 {% block content %}
-<!-- ...........................displays messages -->
-{% if messages %}
-<ul class="messages">
-    {% for message in messages %}
-    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-    {% endfor %}
-</ul>
-{% endif %}
-<!-- ...........................display unaproved reviews -->
+{% if user.is_staff or user.has_group %}
+    <!-- ...........................displays messages -->
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    <!-- ...........................display unaproved reviews -->
+    <div class="container">
+        <div class="row">
+            <h1>Manage reviews</h1>
+            {% for review in review %}
+                {% if review.approved == 'not approved' %}
+                    <div class="col">
+                        <div class="card">
+                            <h2>{{ review.title}}</h2>
+                            <p>Click bellow to approve review</p>
+                            <a href="{% url 'approve_review' review.pk %}"><button type="button" class="btn btn-primary">Manage review</button></a>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+
+        </div>
+    </div>
+{% else %}
 <div class="container">
     <div class="row">
-        <h1>Manage reviews</h1>
-        {% for review in review %}
-            {% if review.approved == 'not approved' %}
-                <div class="col">
-                    <div class="card">
-                        <h2>{{ review.title}}</h2>
-                        <p>Click bellow to approve review</p>
-                        <a href="{% url 'approve_review' review.pk %}"><button type="button" class="btn btn-primary">Manage review</button></a>
-                    </div>
-                </div>
-            {% endif %}
-        {% endfor %}
-
+        <h1>admin only</h1>
+        <!-- .........................manage reviews card -->
+        <div class="col">
+            <div class="card">
+                <h2>Access denied</h2>
+                <p>you mus be logged in as site-admin to view this page</p>
+            </div>
+        </div>
     </div>
 </div>
-
+{% endif %}
 
 {% endblock %}
