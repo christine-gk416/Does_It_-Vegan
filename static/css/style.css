@@ -10,6 +10,20 @@
 }
 
 /* ....................................general */
+
 body {
+    color: black;
     background-color: rgb(150, 215, 175);
+}
+
+/* ....................................general */
+
+.title-card {
+    background-color: #4BBB76;
+}
+
+/* ....................................nav bar */
+
+.nav-link {
+    color: black!important;
 }

@@ -12,11 +12,12 @@
 {% endif %}
 
 <div class="container">
-    <div class="row">
-        <h1>details</h1>
-        <h2>{{restaurant.name|striptags}}</h2>
-        <p>description: {{restaurant.description|striptags}}</p>
-        <p>town/city: {{restaurant.townCity|striptags}}</p>
+    <div class="row text-center">
+        <div class="card mt-2 title-card">
+            <h1>{{restaurant.name|striptags}}</h1>
+            <p>description: {{restaurant.description|striptags}}</p>
+            <p>town/city: {{restaurant.townCity|striptags}}</p>
+        </div>
 
         <!-- .......................... dish section -->
 
@@ -24,7 +25,7 @@
         {% for dish in dish %}
             {% if dish.restaurant.id == restaurant.id %}
                 <div class="col">
-                    <div class="card" style="width: 18rem;">
+                    <div class="card mt-5" style="width: 18rem;">
                         {% if "placeholder" in dish.image.url%}
                             <img src="{% static 'images/go-vegan.jpg' %}" class="card-img-top" alt="place holder image">
                         {% else %}
@@ -62,8 +63,8 @@
         {% for review in review %}
         {% if review.restaurant.id == restaurant.id and review.approved == 'approved' %}
             <div class="col">
-                <div class="card">
-                    <h2>{{review.title|striptags}}</h2>
+                <div class="card mt-5">
+                    <div class="card-header"><h1>{{review.title|striptags}}</h1></div>
                     <p>reviewd by:{{review.posted_by|striptags}}</p>
                     <p>body: {{review.body|striptags}}</p>
                     {% if user.id == review.posted_by.id %}
