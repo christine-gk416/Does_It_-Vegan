@@ -33,9 +33,15 @@ body {
 
 /* ....................................nav bar */
 
-.nav-link {
+.nav-link, nav span{
     color: black!important;
 }
+ 
+.navbar-brand {
+    font-family: 'Orelega One', cursive;
+}
+
+/* ....................................hero img */
 
 .img-fluid {
     height: auto;
