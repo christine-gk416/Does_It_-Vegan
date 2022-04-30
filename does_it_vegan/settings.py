@@ -46,15 +46,15 @@ INSTALLED_APPS = [
     'cloudinary',
     'django_summernote',	
     'crispy_forms',	
-    'crispy_bootstrap5',	
-    'fontawesomefree',	
+    # 'crispy_bootstrap5',	
+    # 'fontawesomefree',	
     'web_app',
 ]
 
 SITE_ID = 1
 
-CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"	
-CRISPY_TEMPLATE_PACK = 'bootstrap5'
+# CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"	
+# CRISPY_TEMPLATE_PACK = 'bootstrap5'
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
@@ -164,5 +164,5 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # redirects to home page as profile page not needed	
-LOGIN_REDIRECT_URL = 'home'	
-LOGOUT_REDIRECT_URL = 'home'
+# LOGIN_REDIRECT_URL = 'home'	
+# LOGOUT_REDIRECT_URL = 'home'
