@@ -46,15 +46,14 @@ INSTALLED_APPS = [
     'cloudinary',
     'django_summernote',	
     'crispy_forms',	
-    # 'crispy_bootstrap5',	
-    # 'fontawesomefree',	
+    'crispy_bootstrap5',
     'web_app',
 ]
 
 SITE_ID = 1
 
-# CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"	
-# CRISPY_TEMPLATE_PACK = 'bootstrap5'
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"	
+CRISPY_TEMPLATE_PACK = 'bootstrap5'
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
@@ -155,7 +154,9 @@ DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 STATIC_URL = '/static/'
 STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'), ]
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Default primary key field type
